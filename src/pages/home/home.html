@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar block color = "dark">
+    <ion-title>
+      8Gag
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content >
+    
+  
+  <!-- Es un observador con el pipe le dice a angular que espere la info y renderice -->
+  <!-- <ion-card *ngFor="let post of posts | async"> -->
+  <ion-card *ngFor="let post of archivoProvider.imagenes">
+    <img [src]="post.img" [alt]="post.titulo">
+    <ion-card-content>
+      <ion-card-title>
+        {{ post.titulo }}
+      </ion-card-title>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col text-right>
+         <button ion-button clear small color="primary" icon-left (click)="shareFoto(post)">
+           <ion-icon name='share-alt'></ion-icon>
+           Compartir
+          </button>
+      </ion-col>
+    </ion-row>     
+ </ion-card>
+    
+
+
+
+
+
+  <!-- Real floating action button, fixed. It will not scroll with the content -->
+  <!-- <ion-fab top right edge> -->
+    <ion-fab bottom right>
+      <button ion-fab color="danger" (click)="mostrarModal()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <!-- Lista de opciones -->
+      <!-- <ion-fab-list>
+        <button ion-fab><ion-icon name="logo-facebook"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-twitter"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-vimeo"></ion-icon></button>
+        <button ion-fab><ion-icon name="logo-googleplus"></ion-icon></button>
+      </ion-fab-list> -->
+    </ion-fab>
+
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" [enabled]="hayMas">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+
+</ion-content>
